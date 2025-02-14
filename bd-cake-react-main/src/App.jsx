@@ -71,7 +71,7 @@ function App() {
   return (
     <>
       <main style={{ backgroundColor: "maroon", minHeight: "100vh", width: "100vw", textAlign: "center", position: "absolute", top: 0, left: 0, fontFamily: "'Dancing Script', cursive" }}>
-        <h1 style={{ fontSize: "3rem", color: "maroon", marginTop: "150px", fontFamily: "'Lobster', cursive", animation: "pulse 2s infinite alternate" }}>Happy Valentine's</h1>
+        <h1 style={{ fontSize: "3rem", color: "White", marginTop: "150px", fontFamily: "'Lobster', cursive", animation: "pulse 2s infinite alternate" }}>Happy Valentine's</h1>
         <Cake elementPositions={elementPositions} blowDetected={blowDetected} />
       </main>
 
