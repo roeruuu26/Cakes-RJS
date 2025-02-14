@@ -1,4 +1,4 @@
-$vanilla: #f0e4d0;
+$vanilla: #ff6f80;
 $chocolate: #553c13;
 
 @mixin foodColoring($color) {
@@ -29,7 +29,7 @@ $chocolate: #553c13;
   position: absolute;
   bottom: -10px;
   left: -10px;
-  background-color: #f6a5eb;
+  background-color: #83002e;
   border-radius: 50%;
   box-shadow: 0 2px 0 darken(#ce97fb, 10%), 0 4px 0 darken(#ccc, 10%),
     0 5px 40px rgba(#f6a5eb, 0.5);
@@ -61,7 +61,7 @@ $chocolate: #553c13;
 .icing {
   top: -1px;
   left: -1px;
-  background-color: #f0e4d0;
+  background-color: #ff2c92;
   width: 252px;
   height: 103px;
   border-radius: 50%;

@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import "./App.scss";
-import Age from "./components/Age";
 import Cake from "./components/Cake";
 
 function App() {
-  const [age, setAge] = useState([]);
   const [elementPositions, setElementPositions] = useState([]);
   const [blowDetected, setBlowDetected] = useState(false);
   let audioContext;
@@ -12,24 +10,19 @@ function App() {
   let microphone;
 
   useEffect(() => {
-    const newPositions = Array.from(
-      { length: age - elementPositions.length },
-      () => ({
-        x: Math.random() * 230 + 10,
-        y: Math.random() * 20,
-      })
-    );
+    const initialPositions = Array.from({ length: 10 }, () => ({
+      x: Math.random() * 230 + 10,
+      y: Math.random() * 20,
+    }));
 
-    setElementPositions((prevPositions) => [...prevPositions, ...newPositions]);
-  }, [age, elementPositions.length]);
+    setElementPositions(initialPositions);
+  }, []);
 
   useEffect(() => {
     const handleBlow = () => {
       setBlowDetected(true);
 
-      // Проверяем, подключен ли микрофон к аудиоанализатору
       if (microphone && analyser && audioContext.state === "running") {
-        // Останавливаем работу аудиоанализатора при обнаружении дуновения
         audioContext.suspend();
       }
     };
@@ -51,9 +44,7 @@ function App() {
 
         const detectBlow = () => {
           analyser.getByteFrequencyData(dataArray);
-
-          const average =
-            dataArray.reduce((acc, val) => acc + val, 0) / bufferLength;
+          const average = dataArray.reduce((acc, val) => acc + val, 0) / bufferLength;
 
           if (average > 100 && !blowDetected) {
             handleBlow();
@@ -70,7 +61,6 @@ function App() {
 
     initializeMicrophone();
 
-    // Очищаем ресурсы при размонтировании компонента
     return () => {
       if (audioContext) {
         audioContext.close();
@@ -80,25 +70,30 @@ function App() {
 
   return (
     <>
-      <main>
-        <Age age={age} setAge={setAge} blowDetected={blowDetected} />
-
+      <main style={{ backgroundColor: "pink", minHeight: "100vh", width: "100vw", textAlign: "center", position: "absolute", top: 0, left: 0, fontFamily: "'Dancing Script', cursive" }}>
+        <h1 style={{ fontSize: "3rem", color: "maroon", marginTop: "150px", fontFamily: "'Lobster', cursive", animation: "pulse 2s infinite alternate" }}>Happy Valentine's</h1>
         <Cake elementPositions={elementPositions} blowDetected={blowDetected} />
       </main>
 
-      <footer>
-        <p>
-          Created by{" "}
-          <a
-            href="https://github.com/shoproizoshlo"
-            rel="noreferer"
-            target="_blank"
-          >
-            Sue Brechko
-          </a>
-          . Idea @someone
+      <footer style={{ textAlign: "center", padding: "10px", background: "#fff", position: "absolute", bottom: 0, width: "100%", fontFamily: "'Dancing Script', cursive" }}>
+        <p style={{ animation: "fadein 3s ease-in-out", color: "maroon" }}>
+          Modified by Ruru &
+          Credits to <a href="https://www.https://github.com/shoproizoshlo.com"> Sue Brechko</a> for the cake design.
         </p>
       </footer>
+      <style>
+        {`
+          @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+          }
+
+          @keyframes fadein {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+          }
+        `}
+      </style>
     </>
   );
 }
