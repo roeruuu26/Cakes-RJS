@@ -70,13 +70,13 @@ function App() {
 
   return (
     <>
-      <main style={{ backgroundColor: "pink", minHeight: "100vh", width: "100vw", textAlign: "center", position: "absolute", top: 0, left: 0, fontFamily: "'Dancing Script', cursive" }}>
+      <main style={{ backgroundColor: "maroon", minHeight: "100vh", width: "100vw", textAlign: "center", position: "absolute", top: 0, left: 0, fontFamily: "'Dancing Script', cursive" }}>
         <h1 style={{ fontSize: "3rem", color: "maroon", marginTop: "150px", fontFamily: "'Lobster', cursive", animation: "pulse 2s infinite alternate" }}>Happy Valentine's</h1>
         <Cake elementPositions={elementPositions} blowDetected={blowDetected} />
       </main>
 
-      <footer style={{ textAlign: "center", padding: "10px", background: "#fff", position: "absolute", bottom: 0, width: "100%", fontFamily: "'Dancing Script', cursive" }}>
-        <p style={{ animation: "fadein 3s ease-in-out", color: "maroon" }}>
+      <footer style={{ textAlign: "center", padding: "10px", background: "#maroon", position: "absolute", bottom: 0, width: "100%", fontFamily: "'Dancing Script', cursive" }}>
+        <p style={{ animation: "fadein 3s ease-in-out", color: "white" }}>
           Modified by Ruru &
           Credits to <a href="https://www.https://github.com/shoproizoshlo.com"> Sue Brechko</a> for the cake design.
         </p>
