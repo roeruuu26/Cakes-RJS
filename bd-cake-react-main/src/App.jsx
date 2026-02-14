@@ -10,13 +10,7 @@ function App() {
   let microphone;
 
   useEffect(() => {
-    const initialPositions = [
-      {
-        x: 125,
-        y: -10,
-      }
-    ];
-
+    const initialPositions = [{ x: 125, y: -10 }];
     setElementPositions(initialPositions);
   }, []);
 
@@ -30,15 +24,11 @@ function App() {
 
     const initializeMicrophone = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-          audio: true,
-        });
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
         analyser = audioContext.createAnalyser();
         microphone = audioContext.createMediaStreamSource(stream);
-
         microphone.connect(analyser);
-
         analyser.fftSize = 256;
         const bufferLength = analyser.frequencyBinCount;
         const dataArray = new Uint8Array(bufferLength);
@@ -46,14 +36,11 @@ function App() {
         const detectBlow = () => {
           analyser.getByteFrequencyData(dataArray);
           const average = dataArray.reduce((acc, val) => acc + val, 0) / bufferLength;
-
           if (average > 100 && !blowDetected) {
             handleBlow();
           }
-
           requestAnimationFrame(detectBlow);
         };
-
         detectBlow();
       } catch (error) {
         console.error("Error accessing microphone:", error);
@@ -61,12 +48,7 @@ function App() {
     };
 
     initializeMicrophone();
-
-    return () => {
-      if (audioContext) {
-        audioContext.close();
-      }
-    };
+    return () => { if (audioContext) audioContext.close(); };
   }, [blowDetected]);
 
   return (
@@ -79,20 +61,33 @@ function App() {
         position: "absolute", 
         top: 0, 
         left: 0, 
-        fontFamily: "'Dancing Script', cursive" 
+        overflow: "hidden"
       }}>
-        {/* UPDATED STYLE HERE */}
         <h1 style={{ 
-          fontSize: "4rem", /* Increased size for better readability */
+          fontSize: "4rem", 
           color: "White", 
-          marginTop: "150px", 
-          fontFamily: "'Great Vibes', cursive", /* Changed font here */
+          marginTop: "100px", 
+          marginBottom: "10px",
+          fontFamily: "'Great Vibes', cursive", 
           fontWeight: "400",
-          textShadow: "2px 2px 4px rgba(0,0,0,0.3)", /* Added shadow for depth */
+          textShadow: "2px 2px 4px rgba(0,0,0,0.3)", 
           animation: "pulse 2s infinite alternate" 
         }}>
           Happy Valentine's Day
         </h1>
+
+        {/* NEW BLOW INSTRUCTION TEXT */}
+        <p style={{
+          fontSize: "0.75 rem",
+          color: "#ffcccb",
+          fontFamily: "'Dancing Script', cursive",
+          margin: "0 auto 30px auto",
+          opacity: blowDetected ? 0 : 1, // Fades out when blown
+          transition: "opacity 1s ease-in-out",
+          letterSpacing: "1px"
+        }}>
+          {blowDetected ? "Make a wish! ✨" : "Please blow your microphone to blow out the candle! "}
+        </p>
         
         <Cake elementPositions={elementPositions} blowDetected={blowDetected} />
       </main>
@@ -103,13 +98,13 @@ function App() {
           Credits to <a href="https://github.com/shoproizoshlo" style={{ color: "#ffcccb", textDecoration: "none" }}> Sue Brechko</a> for the cake design.
         </p>
       </footer>
+
       <style>
         {`
           @keyframes pulse {
             0% { transform: scale(1); }
             100% { transform: scale(1.05); } 
           }
-
           @keyframes fadein {
             0% { opacity: 0; }
             100% { opacity: 1; }
