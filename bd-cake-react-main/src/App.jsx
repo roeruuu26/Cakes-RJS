@@ -86,7 +86,7 @@ function App() {
           transition: "opacity 1s ease-in-out",
           letterSpacing: "1px"
         }}>
-          {blowDetected ? "Make a wish! ✨" : "Please blow your microphone to blow out the candle! "}
+          {blowDetected ? "I love you!" : "Please blow your microphone to blow out the candle! "}
         </p>
         
         <Cake elementPositions={elementPositions} blowDetected={blowDetected} />
