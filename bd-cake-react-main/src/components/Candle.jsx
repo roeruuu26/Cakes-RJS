@@ -16,9 +16,10 @@ const Candle = ({ elementPositions, blowDetected }) => {
           <div
             className={`flame ${blowDetected ? "fadeOut" : "flicker"}`}
           ></div>
-
           <div className="wick"></div>
-          <div className={blowDetected ? "" : "drop"}></div>
+          
+          {/* New Heart Shaped Wax Body */}
+          <div className="wax-heart"></div>
         </div>
       ))}
     </div>

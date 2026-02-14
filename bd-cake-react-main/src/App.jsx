@@ -10,10 +10,12 @@ function App() {
   let microphone;
 
   useEffect(() => {
-    const initialPositions = Array.from({ length: 10 }, () => ({
-      x: Math.random() * 230 + 10,
-      y: Math.random() * 20,
-    }));
+    const initialPositions = [
+      {
+        x: 125,
+        y: -10,
+      }
+    ];
 
     setElementPositions(initialPositions);
   }, []);
@@ -21,7 +23,6 @@ function App() {
   useEffect(() => {
     const handleBlow = () => {
       setBlowDetected(true);
-
       if (microphone && analyser && audioContext.state === "running") {
         audioContext.suspend();
       }
@@ -70,22 +71,43 @@ function App() {
 
   return (
     <>
-      <main style={{ backgroundColor: "maroon", minHeight: "100vh", width: "100vw", textAlign: "center", position: "absolute", top: 0, left: 0, fontFamily: "'Dancing Script', cursive" }}>
-        <h1 style={{ fontSize: "3rem", color: "White", marginTop: "150px", fontFamily: "'Lobster', cursive", animation: "pulse 2s infinite alternate" }}>Happy Valentine's</h1>
+      <main style={{ 
+        backgroundColor: "maroon", 
+        minHeight: "100vh", 
+        width: "100vw", 
+        textAlign: "center", 
+        position: "absolute", 
+        top: 0, 
+        left: 0, 
+        fontFamily: "'Dancing Script', cursive" 
+      }}>
+        {/* UPDATED STYLE HERE */}
+        <h1 style={{ 
+          fontSize: "4rem", /* Increased size for better readability */
+          color: "White", 
+          marginTop: "150px", 
+          fontFamily: "'Great Vibes', cursive", /* Changed font here */
+          fontWeight: "400",
+          textShadow: "2px 2px 4px rgba(0,0,0,0.3)", /* Added shadow for depth */
+          animation: "pulse 2s infinite alternate" 
+        }}>
+          Happy Valentine's Day
+        </h1>
+        
         <Cake elementPositions={elementPositions} blowDetected={blowDetected} />
       </main>
 
-      <footer style={{ textAlign: "center", padding: "10px", background: "#maroon", position: "absolute", bottom: 0, width: "100%", fontFamily: "'Dancing Script', cursive" }}>
+      <footer style={{ textAlign: "center", padding: "10px", background: "transparent", position: "absolute", bottom: 0, width: "100%", fontFamily: "'Dancing Script', cursive" }}>
         <p style={{ animation: "fadein 3s ease-in-out", color: "white" }}>
           Modified by Ruru &
-          Credits to <a href="https://www.https://github.com/shoproizoshlo.com"> Sue Brechko</a> for the cake design.
+          Credits to <a href="https://github.com/shoproizoshlo" style={{ color: "#ffcccb", textDecoration: "none" }}> Sue Brechko</a> for the cake design.
         </p>
       </footer>
       <style>
         {`
           @keyframes pulse {
             0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
+            100% { transform: scale(1.05); } 
           }
 
           @keyframes fadein {

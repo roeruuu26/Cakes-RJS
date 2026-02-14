@@ -1,5 +1,10 @@
 $vanilla: #ff6f80;
 $chocolate: #553c13;
+$rose-color: #d00000;
+$leaf-color: #2d6a4f;
+
+// ... (Keep your existing @mixin foodColoring, .cake, .plate, .layer styles here) ...
+// Ensure you include the existing code from your previous Cake.scss snippet before adding the code below
 
 @mixin foodColoring($color) {
   background-color: $color;
@@ -48,15 +53,9 @@ $chocolate: #553c13;
   @include foodColoring($chocolate);
 }
 
-.layer-top {
-  top: 0px;
-}
-.layer-middle {
-  top: 33px;
-}
-.layer-bottom {
-  top: 66px;
-}
+.layer-top { top: 0px; }
+.layer-middle { top: 33px; }
+.layer-bottom { top: 66px; }
 
 .icing {
   top: -1px;
@@ -65,6 +64,7 @@ $chocolate: #553c13;
   width: 252px;
   height: 103px;
   border-radius: 50%;
+  z-index: 2; // Increased Z-index to sit below roses but above layers
   &:before {
     content: "";
     position: absolute;
@@ -87,6 +87,7 @@ $chocolate: #553c13;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
   background-color: $vanilla;
+  z-index: 3; // Ensure drips are above icing
 }
 
 .drip1 {
@@ -109,4 +110,63 @@ $chocolate: #553c13;
   width: 80px;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
+}
+
+// ------------------------------------
+// NEW ROSE STYLES
+// ------------------------------------
+
+.rose {
+  width: 30px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 20%, #ff5e6c 10%, #d00000 70%);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  z-index: 5; // Sit on top of icing
+  
+  // Creates a swirl effect for the petals
+  background-image: conic-gradient(
+    from 45deg, 
+    #b00000 0deg, 
+    #ff4d6d 60deg, 
+    #b00000 120deg, 
+    #ff4d6d 180deg, 
+    #b00000 240deg, 
+    #ff4d6d 300deg, 
+    #b00000 360deg
+  );
+  border: 1px solid #8a0000;
+  
+  // The Leaf
+  &::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 12px;
+    background: $leaf-color;
+    border-radius: 0 50% 0 50%;
+    transform: rotate(-45deg);
+    top: 15px;
+    left: -8px;
+    z-index: -1;
+  }
+}
+
+// Positioning the Roses on the cake
+.rose-1 {
+  top: 10px;
+  left: 40px;
+}
+
+.rose-2 {
+  top: 15px;
+  left: 170px;
+  transform: scale(0.9);
+}
+
+.rose-3 {
+  top: 35px;
+  left: 110px;
+  transform: scale(1.1);
+  z-index: 6; // Center rose slightly on top
 }

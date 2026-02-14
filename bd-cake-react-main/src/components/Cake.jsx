@@ -13,6 +13,11 @@ const Cake = ({ elementPositions, blowDetected }) => {
       <div className="drip drip2"></div>
       <div className="drip drip3"></div>
 
+      {/* NEW: Roses */}
+      <div className="rose rose-1"></div>
+      <div className="rose rose-2"></div>
+      <div className="rose rose-3"></div>
+
       <Candle elementPositions={elementPositions} blowDetected={blowDetected} />
     </div>
   );
